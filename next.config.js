@@ -14,6 +14,25 @@ module.exports = {
       ],
     });
 
+    config.module.rules.push({
+      test: /\.(scss|sass)$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: require("styled-jsx/webpack").loader,
+          options: {
+            type: () => "global",
+          },
+        },
+        {
+          loader: "postcss-loader",
+        },
+        {
+          loader: "sass-loader",
+        },
+      ],
+    });
+
     return config;
   },
 };
